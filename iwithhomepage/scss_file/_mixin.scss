@@ -1,0 +1,31 @@
+@import "variables";
+
+/*floatクリア用*/
+
+@mixin clear_after {
+content: " ";
+display: block;
+height: 0;
+clear: both;
+visibility: hidden;
+}
+
+@mixin clear_fix {
+display: inline-table;}
+
+
+/*レスポンシブ用*/
+$layout-width-inner: 1180px;
+
+$breakpoints: (
+  "sp": "screen and (min-width: 360px)",
+  "tab": "screen and (min-width: 768px) and (max-width: #{$layout-width-inner - 1px})",
+  "pc": "screen and (min-width:#{$layout-width-inner})",
+);
+
+
+@mixin mq($breakpoint: sp) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+  @content;
+  }
+}
