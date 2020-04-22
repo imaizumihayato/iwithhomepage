@@ -1,0 +1,219 @@
+@import "scss_file/_variables.scss";
+@import "scss_file/_mixin.scss";
+@import "scss_file/_reset.scss";
+
+/*  ヘッダー部分　*/
+
+.header {
+  background-color:rgba(40,57,61,0.9);
+  color:#fff;
+  height:30px;
+  padding:10px;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content:space-between;
+  align-items: center;
+    }
+
+
+.header-logo {
+    img {
+       float:left;
+       width: 20px;
+           }
+
+      p {
+          float: left;
+          color: white;
+          padding-left: 10px;
+          }
+}
+
+.header-navigation {
+      padding-right: 30px;
+
+        @include mq("sp"){
+          display: none;
+        }
+
+        @include mq("tab"){
+          display: block;
+        }
+
+        @include mq("pc"){
+          display: block;
+        }
+}
+
+
+.header-navigation-wrapper {
+        a {
+          text-decoration: none;
+          color: white;
+
+        }
+        span {
+          padding: 0 10px;
+        }
+}
+
+
+.header-modal {
+    padding-right: 30px;
+
+    @include mq("sp"){
+      display: block;
+    }
+
+    @include mq("tab"){
+      display: none;
+    }
+    @include mq("pc"){
+      display: none;
+    }
+
+    i {
+    color: black;
+  }
+
+}
+/*  ヘッダー部分終了　*/
+
+
+/*  モーダル部分　*/
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(66,87,178,0.1);
+  display: none;
+  z-index: 10000;
+  display: none;
+}
+
+.modal-wrapper {
+  width: 200px;
+
+    .modal-parts {
+      font-size: 30px;
+      border-bottom: 1px solid;
+      text-align: center;
+      text-decoration: none;
+      margin-top: 15px;
+        a {
+          text-decoration: none;
+          color: white;
+          }
+
+    }
+}
+
+.modal-active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*  モーダル部分終了　*/
+
+/*  トップコンテンツ部分　*/
+
+.top-contents {
+  @include mq("sp"){
+    height: 300px;
+  }
+
+  @include mq("tab"){
+    height: 700px;
+  }
+  @include mq("pc"){
+    height: 700px;
+  }
+}
+
+.top-contents-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    background-image: url("image/iwith_top_image.png");
+    background-size: cover;
+    z-index: 10;
+    color: white;
+    font-weight: bold;
+
+
+    @include mq("sp"){
+      height: 300px;
+      h1{
+      font-size: 20px;
+    }
+    }
+
+    @include mq("tab"){
+      height: 700px;
+      h1{
+      font-size: 45px;
+    }
+    }
+    @include mq("pc"){
+      height: 700px;
+      h1{
+      font-size: 50px;
+    }
+    }
+
+      h1 {
+        background-color: rgba(40,57,61,0.5);
+
+      }
+
+}
+
+.canvas {
+  position: fixed;
+  z-index: 100000
+}
+
+/*  トップコンテンツ部分終了　*/
+
+/*  iwithとは　*/
+.what_is_iwith {
+  background-color: darken(#F6F6F4, 7%);
+  height: 300px;
+}
+
+.what_is_iwith_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+
+
+/*  iwithとは終了　*/
+
+
+
+
+
+
+.clearfix:after {
+  @include clear_after;
+}
+
+.clearfix {
+  @include clear_fix;
+}
