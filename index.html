@@ -5,11 +5,10 @@
   <meta charset="utf-8">
   <title>iwithホームページ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="stylesheet.min.css">
   <link href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" rel="stylesheet">
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"></script>
-
 </head>
 
 <body>
@@ -18,8 +17,10 @@
     <div class="header-container">
 
       <div class="header-logo clearfix">
-     　<img src="./image/iwith_logo.png" alt="アイウィズロゴ画像">
+      <a href="https://iwith.tech">
+       <img src="./image/iwith_logo.png" alt="アイウィズロゴ画像">
        <p>iwith合同会社</p>
+      </a>
      </div>
 
      <div class="header-modal">
@@ -28,8 +29,8 @@
 
      <div class="header-navigation">
        <div class="header-navigation-wrapper">
-         <a href="./index.html">ホーム</a><span>|</span>
-         <a href="./index.html">事業内容</a><span>|</span>
+         <a href="https://iwith.tech">ホーム</a><span>|</span>
+         <a href="#what_is_iwith">事業内容</a><span>|</span>
          <a href="./index.html">実績</a><span>|</span>
          <a href="./index.html">お問い合わせ</a><span>|</span>
          <a href="./index.html">会社概要</a>
@@ -51,16 +52,23 @@
 <!-- トップコンテンツ部分終了 -->
 
 <!-- iwithとは -->
-<div class="what_is_iwith">
+<div class="what_is_iwith" id="what_is_iwith">
   <div class="what_is_iwith_wrapper">
     <h2>iwithって何してるの？</h2>
-    <p>アイウエオ</p>
+     <h3>iwith2本の柱</h3>
+      <p>１.豊富な医療知識で医薬品・健康食品の相談やコンサルタント</p>
+      <p>２.it技術を用いたサービス開発・it技術の導入やコンサルタント</p>
   </div>
 </div>
 
 
 <!-- iwithとは終了 -->
 
+<!-- iwith実績 -->
+<div class="testtest">
+<div id="test">aiueo</div>
+</div>
+<!-- iwith実績終了 -->
 
 <div class="canvas">
  <canvas id="myCanvas"></canvas>
@@ -71,11 +79,11 @@
   <!-- モーダル部分 -->
   <div class="modal">
     <div class="modal-wrapper">
-      <div class="modal-parts"><a href="./index.html">ホーム</a></div>
-      <div class="modal-parts"><a href="./index.html">事業内容</div></a>
+      <div class="modal-parts"><a href="https://iwith.tech">ホーム</a></div>
+      <div class="modal-parts"><a href="#what_is_iwith"><span id="what_is_iwith" class="link-t-a"></span>事業内容</div></a>
       <div class="modal-parts"><a href="./index.html">実績</div></a>
       <div class="modal-parts"><a href="./index.html">お問い合わせ</div></a>
-      <div class="modal-parts"><a href="./index.html">会社概要</div></a>
+      <div class="modal-parts"><a href="./test.html">会社概要</div></a>
     </div>
 
   </div>

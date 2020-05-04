@@ -175,26 +175,24 @@
   }
   @include mq("tab") {
     height: 400px;
-
   }
   @include mq("pc") {
     height: 400px;
+  }
 }
-}
-
 
 .what_is_iwith_wrapper {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   h2 {
     position: absolute;
     top: 5%;
     left: 5%;
   }
-  
   @include mq("sp") {
     height: 300px;
   }
@@ -203,11 +201,13 @@
   }
   @include mq("pc") {
     height: 400px;
-}
+  }
+
+  p {
+    margin-top: 15px;
+  }
 }
 /*  iwithとは終了　*/
-
-
 .clearfix:after {
   @include clear_after;
 }
