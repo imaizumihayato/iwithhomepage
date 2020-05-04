@@ -328,16 +328,6 @@ body {
   }
 }
 
-span.link-t-a {
-  position: relative;
-  top: -1000px;
-  display: block
-}
-
-.testtest {
-  padding-top: 10000px
-}
-
 .clearfix:after {
   content: " ";
   display: block;
