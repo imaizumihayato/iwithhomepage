@@ -43,6 +43,7 @@ body {
   img {
     float: left;
     width: 20px;
+    height: auto;
   }
 
   p {
@@ -297,13 +298,20 @@ body {
 }
 }
 
-
-
-
 /*  iwithとは終了　*/
 
+/*  iwith実績　*/
 
-.clearfix:after {
+.iwith_performances {
+  text-align: center;
+  img {
+    width: 50%;
+    height: auto;
+  }
+}
+
+
+.clearfix::after {
   @include clear_after;
 }
 
@@ -312,6 +320,7 @@ body {
 }
 
 /* 動作テスト用　*/
+
 .testtest {
   padding-top: 10000px
 }
