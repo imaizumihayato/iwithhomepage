@@ -212,16 +212,6 @@ body {
     height: 45rem;
   }
 }
-/* ページ内リンク調整用　*/
-
-.what_is_iwith::before {
-    content: "";
-    margin-top: -5rem;
-    height: 5rem;
-    display: block;
-    visibility: hidden;
-}
-/* ページ内リンク調整用　*/
 
 .what_is_iwith_wrapper {
   position: relative;
@@ -302,13 +292,94 @@ body {
 
 /*  iwith実績　*/
 
-.iwith_performances {
-  text-align: center;
-  img {
-    width: 50%;
-    height: auto;
+
+
+.iwith_performance_wrapper {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 10px;
+
+
+  h2 {
+    font-size: 3rem;
   }
 }
+
+.iwith_performances {
+  text-align: center;
+  @include mq("sp") {
+    margin-top: 2rem;
+  }
+  @include mq("tab") {
+
+  }
+  @include mq("tab500") {
+
+  }
+  @include mq("pc") {
+
+  }
+
+  p {
+    @include mq("sp") {
+      font-size: 2rem;
+    }
+    @include mq("tab") {
+
+    }
+    @include mq("tab500") {
+
+    }
+    @include mq("pc") {
+
+    }
+  }
+
+  img {
+    width: 80%;
+    height: auto;
+  @include mq("sp") {
+
+  }
+  @include mq("tab") {
+
+  }
+  @include mq("tab500") {
+
+  }
+  @include mq("pc") {
+
+  }
+}
+}
+
+/*  iwith実績終了　*/
+
+
+/* ページ内リンク調整用　*/
+
+.what_is_iwith::before, .iwith_performance::before {
+    content: "";
+    margin-top: -5rem;
+    height: 5rem;
+    display: block;
+    visibility: hidden;
+}
+/* ページ内リンク調整用終了　*/
+
+/* float解除　*/
 
 
 .clearfix::after {
@@ -318,6 +389,9 @@ body {
 .clearfix {
   @include clear_fix;
 }
+
+/* float解除終了　*/
+
 
 /* 動作テスト用　*/
 

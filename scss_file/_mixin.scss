@@ -20,6 +20,7 @@ $layout-width-inner: 1180px;
 $breakpoints: (
   "sp": "screen and (min-width: 300px)",
   "sp500": "screen and (min-width: 300px) and (max-width: 500px)",
+  "tab500": "screen and (min-width: 501px) and (max-width: 767px)",
   "tab": "screen and (min-width: 768px) and (max-width: #{$layout-width-inner - 1px})",
   "pc": "screen and (min-width:#{$layout-width-inner})",
 
