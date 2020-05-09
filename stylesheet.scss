@@ -1,12 +1,21 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
 @import "scss_file/_variables.scss";
 @import "scss_file/_mixin.scss";
 @import "scss_file/_reset.scss";
 /*  ヘッダー部分　*/
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
 .header {
   background-color: rgba(40,57,61,0.9);
   color: #fff;
-  height: 30px;
-  padding: 10px;
+  height: 3rem;
+  padding: 1rem;
   width: 100%;
   position: fixed;
   top: 0;
@@ -14,10 +23,19 @@
 }
 
 .header-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
   width: 100%;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -25,6 +43,7 @@
   img {
     float: left;
     width: 20px;
+    height: auto;
   }
 
   p {
@@ -82,17 +101,17 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(66,87,178,0.1);
+  background: -o-radial-gradient(rgba(102, 109, 119,0.8) 30%, rgba(102, 109, 119,0.3) 70%);
+  background: radial-gradient(rgba(102, 109, 119,0.8) 30%, rgba(102, 109, 119,0.3) 70%);
   display: none;
   z-index: 10000;
-  display: none;
 }
 
 .modal-wrapper {
   width: 200px;
 
   .modal-parts {
-    font-size: 30px;
+    font-size: 3rem;
     border-bottom: 1px solid;
     text-align: center;
     text-decoration: none;
@@ -106,8 +125,14 @@
 }
 
 .modal-active {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 /*  モーダル部分終了　*/
@@ -125,8 +150,14 @@
 }
 
 .top-contents-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   position: absolute;
   width: 100%;
@@ -139,21 +170,21 @@
     height: 300px;
 
     h1 {
-      font-size: 20px;
+      font-size: 1.80rem;
     }
   }
   @include mq("tab") {
     height: 700px;
 
     h1 {
-      font-size: 45px;
+      font-size: 4.4rem;
     }
   }
   @include mq("pc") {
     height: 700px;
 
     h1 {
-      font-size: 50px;
+      font-size: 4.3rem;
     }
   }
 
@@ -171,28 +202,31 @@
 .what_is_iwith {
   background-color: darken(#F6F6F4, 7%);
   @include mq("sp") {
-    height: 300px;
+    height: 35rem;
   }
   @include mq("tab") {
-    height: 400px;
+    height: 45rem;
   }
   @include mq("pc") {
-    height: 400px;
+    height: 45rem;
   }
 }
 
 .what_is_iwith_wrapper {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
-
-  h2 {
-    position: absolute;
-    top: 5%;
-    left: 5%;
-  }
   @include mq("sp") {
     height: 300px;
   }
@@ -203,15 +237,168 @@
     height: 400px;
   }
 
+  h2 {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+  }
+
+  h3 {
+    @include mq("sp") {
+      font-size: 2rem;
+    }
+    @include mq("tab") {
+      font-size: 3rem;
+    }
+    @include mq("pc") {
+      font-size: 3.5rem;
+    }
+  }
+
   p {
-    margin-top: 15px;
+    @include mq("sp") {
+      margin-top: 20px;
+      font-size: 1.75rem;
+      text-align: center;
+    }
+    @include mq("tab") {
+      margin-top: 40px;
+      font-size: 2.5rem;
+    }
+    @include mq("pc") {
+      margin-top: 40px;
+      font-size: 4rem;
+    }
+  }
+
+  .kaigyou::before {
+    @include mq("sp500") {
+      content: "\A";
+      white-space: pre;
+    }
+  }
+
+  .what_is_iwith_point {
+    @include mq("sp500") {
+      display: none;
+    }
   }
 }
 /*  iwithとは終了　*/
-.clearfix:after {
+/*  iwith実績　*/
+.iwith_performance {
+  h2 {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 1.5rem;
+  }
+}
+
+.iwith_performance_wrapper {
+    position: relative;
+  @include mq("sp") {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 10px;
+  }
+  @include mq("tab") {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  @include mq("pc") {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+}
+
+.iwith_performances {
+text-align: center;
+
+  @include mq("sp") {
+    margin-top: 2rem;
+  }
+  @include mq("tab") {
+  }
+  @include mq("pc") {}
+
+  h3 {
+    margin-bottom: 2rem;
+    @include mq("sp") {
+      font-size: 1.8rem;
+    }
+    @include mq("tab") {}
+    @include mq("tab500") {}
+    @include mq("pc") {}
+  }
+
+  img {
+    width: 80%;
+    max-width: 500px;
+    height: auto;
+  }
+}
+
+.ex_images {
+  display: inline-block;
+  text-align: left;
+  @include mq("sp") {
+    width: 80%;
+    font-size: rem;
+    max-width: 500px;
+  }
+  @include mq("tab") {
+    max-width: 500px;
+  }
+
+  @include mq("pc") {}
+}
+
+
+
+/*  iwith実績終了　*/
+/* ページ内リンク調整用　*/
+.iwith_performance::before,
+.what_is_iwith::before {
+  content: "";
+  margin-top: -5rem;
+  height: 5rem;
+  display: block;
+  visibility: hidden;
+}
+/* ページ内リンク調整用終了　*/
+/* float解除　*/
+.clearfix::after {
   @include clear_after;
 }
 
 .clearfix {
   @include clear_fix;
 }
+/* float解除終了　*/
+/* 動作テスト用　*/
+.testtest {
+  padding-top: 10000px;
+}
+
+.border_check {
+  border: 1px solid;
+}
+/* 動作テスト用終了　*/
