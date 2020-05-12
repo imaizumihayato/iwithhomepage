@@ -166,12 +166,13 @@ body {
   z-index: 10;
   color: white;
   font-weight: bold;
+
   @include mq("sp") {
     height: 300px;
 
     h1 {
-      font-size: 1.80rem;
-    }
+      font-size: 1.69rem;
+
   }
   @include mq("tab") {
     height: 700px;
@@ -191,6 +192,7 @@ body {
   h1 {
     background-color: rgba(40,57,61,0.5);
   }
+}
 }
 
 .canvas {
@@ -227,6 +229,7 @@ body {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  padding-bottom: 1.5rem;
   @include mq("sp") {
     height: 300px;
   }
@@ -292,10 +295,30 @@ body {
     font-size: 3rem;
     margin-top: 1.5rem;
   }
+
+  p {
+    @include mq("sp") {
+      text-align: center;
+      font-size: 1.3rem;
+    }
+    @include mq("tab500") {
+      text-align: center;
+      font-size: 1.6rem;
+    }
+    @include mq("tab") {
+      text-align: center;
+      font-size: 2rem;
+    }
+    @include mq("pc") {
+      text-align: center;
+      font-size: 2rem;
+    }
+  }
 }
 
 .iwith_performance_wrapper {
-    position: relative;
+  position: relative;
+  margin-bottom: 1rem;
   @include mq("sp") {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -310,7 +333,6 @@ body {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    margin: 10px;
   }
   @include mq("tab") {
     -webkit-box-orient: vertical;
@@ -326,27 +348,35 @@ body {
     flex-direction: row;
     align-items: flex-start;
   }
-
 }
 
 .iwith_performances {
-text-align: center;
-
+  text-align: center;
+  background-color: rgba(40, 57, 61, 0.16);
+  border-radius: 50px;
+  padding: 1rem;
   @include mq("sp") {
+    width: 85%;
     margin-top: 2rem;
   }
-  @include mq("tab") {
+  @include mq("tab500") {
+    width: 70%;
+    margin: 1 0;
   }
-  @include mq("pc") {}
+  @include mq("tab") {
+    width: 33%;
+    margin: 0 1rem;
+  }
+  @include mq("pc") {
+    width: 33%;
+    margin: 0 1rem;
+  }
 
   h3 {
-    margin-bottom: 2rem;
     @include mq("sp") {
       font-size: 1.8rem;
+      padding-bottom: 1rem;
     }
-    @include mq("tab") {}
-    @include mq("tab500") {}
-    @include mq("pc") {}
   }
 
   img {
@@ -354,26 +384,155 @@ text-align: center;
     max-width: 500px;
     height: auto;
   }
+
+  p {
+    text-align: center;
+    padding-top: 1rem;
+    @include mq("sp") {
+      font-size: 1.3rem;
+    }
+    @include mq("tab500") {
+      font-size: 1.5rem;
+    }
+    @include mq("pc") {
+      font-size: 2rem;
+    }
+  }
 }
 
 .ex_images {
   display: inline-block;
-  text-align: left;
   @include mq("sp") {
     width: 80%;
-    font-size: rem;
+    font-size: 1.5rem;
     max-width: 500px;
   }
   @include mq("tab") {
     max-width: 500px;
   }
+}
 
-  @include mq("pc") {}
+.p_kaigyou::before {
+  content: "\A";
+  white-space: pre;
+}
+
+.p_p_kaigyou::before {
+  @include mq("sp") {
+    content: "\A";
+    white-space: pre;
+  }
+  @include mq("tab") {
+    display: none;
+  }
+  @include mq("pc") {
+    display: none;
+  }
+}
+/*  iwith実績終了　*/
+/*  iwith vision　*/
+/*  iwith vision 終了　*/
+
+
+/*  iwith 問い合わせ*/
+#formWrap {
+	width: 90%;
+  max-width: 80rem;
+	margin: 6rem auto 0 auto;
+	color:#555;
+	line-height:120%;
+	font-size:90%;
+  text-align: center;
+  height: 50rem;
+
+  h3 {
+    padding: 1rem 0 0.5rem 0;
+  }
+  p {
+    padding: 1rem;
+  }
+}
+
+table.formTable{
+	width:100%;
+	margin:0 auto;
+	border-collapse:collapse;
+  height: 50rem;
+}
+table.formTable td,table.formTable th{
+	border:1px solid #ccc;
+	padding:10px;
+  text-align: center;
+}
+table.formTable th{
+	width:30%;
+	font-weight:normal;
+	background:#efefef;
+	text-align:left;
+}
+input[type="text"], textarea {
+	width:95%;
+	padding:5px;
+	font-size:110%;
+	display:block;
+}
+
+.btn {
+  padding: 2rem;
+  font-size: 3rem;
+}
+
+@media screen and (max-width:500px) {
+
+#formWrap {
+	width:95%;
+	margin:6rem auto 0 auto;
+}
+table.formTable th, table.formTable td {
+	width:auto;
+	display:block;
+}
+table.formTable th {
+	margin-top:5px;
+	border-bottom:0;
+  text-align: center;
+}
+
+select {
+  width: 60%;
+}
+
+
+input[type="text"], textarea {
+	width:95%;
+	padding:5px;
+	font-size:110%;
+	display:block;
+}
+input[type="submit"], input[type="reset"], input[type="button"] {
+	display:block;
+	width:100%;
+	height:40px;
+}
+
+.ask_kaigyou::before {
+  content: "\A";
+  white-space: pre;
+
+}
+
 }
 
 
 
-/*  iwith実績終了　*/
+/*  iwith 問い合わせ終了*/
+
+
+/*  iwith 会社概要*/
+/*  iwith 会社概要終了*/
+
+
+
 /* ページ内リンク調整用　*/
 .iwith_performance::before,
 .what_is_iwith::before {
