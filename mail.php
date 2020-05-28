@@ -101,7 +101,7 @@ $require = array('お名前','Email','');
 
 // 差出人に送信内容確認メール（自動返信メール）を送る(送る=1, 送らない=0)
 // 送る場合は、フォーム側のメール入力欄のname属性の値が上記「$Email」で指定した値と同じである必要があります
-$remail = 0;
+$remail = 1;
 
 //自動返信メールの送信者欄に表示される名前　※あなたの名前や会社名など（もし自動返信メールの送信者名が文字化けする場合ここは空にしてください）
 $refrom_name = "";
@@ -131,12 +131,11 @@ $mailFooterDsp = 0;
 $mailSignature = <<< FOOTER
 
 ──────────────────────
-iwith合同会社　佐藤太郎
-〒150-XXXX 東京都○○区○○ 　○○ビル○F　
-TEL：03- XXXX - XXXX 　FAX：03- XXXX - XXXX
-携帯：090- XXXX - XXXX 　
-E-mail:xxxx@xxxx.com
-URL: http://www.php-factory.net/
+iwith合同会社　今泉隼人
+〒132-0024 東京都江戸川区一之江７丁目３２−７
+TEL：080-5083-6906 　
+E-mail: iwith@iwith.tech
+URL: https://iwith.tech
 ──────────────────────
 
 FOOTER;

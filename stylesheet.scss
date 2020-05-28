@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
 @import "scss_file/_variables.scss";
 @import "scss_file/_mixin.scss";
@@ -166,33 +173,31 @@ body {
   z-index: 10;
   color: white;
   font-weight: bold;
-
   @include mq("sp") {
     height: 300px;
 
     h1 {
       font-size: 1.69rem;
+    }
+    @include mq("tab") {
+      height: 700px;
 
-  }
-  @include mq("tab") {
-    height: 700px;
+      h1 {
+        font-size: 4.4rem;
+      }
+    }
+    @include mq("pc") {
+      height: 700px;
+
+      h1 {
+        font-size: 4.3rem;
+      }
+    }
 
     h1 {
-      font-size: 4.4rem;
+      background-color: rgba(40,57,61,0.5);
     }
   }
-  @include mq("pc") {
-    height: 700px;
-
-    h1 {
-      font-size: 4.3rem;
-    }
-  }
-
-  h1 {
-    background-color: rgba(40,57,61,0.5);
-  }
-}
 }
 
 .canvas {
@@ -339,14 +344,18 @@ body {
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
-    align-items: flex-start;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
   }
   @include mq("pc") {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
-    align-items: flex-start;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
   }
 }
 
@@ -431,111 +440,274 @@ body {
 }
 /*  iwith実績終了　*/
 /*  iwith vision　*/
+.iwith-vision {
+  @include mq("sp") {
+    background-image: url("image/geometric-mobile.jpg");
+    background-size: cover;
+    margin-top: 5rem;
+    h2{
+      text-align: center;
+      padding: 3rem 0;
+    }
+  }
+  @include mq("tab") {
+    background-image: url("image/geographic.jpg");
+    background-size: cover;
+    margin-top: 6rem;
+    h2 {
+      font-size: 3rem;
+    }
+  }
+  @include mq("pc") {
+    background-image: url("image/geographic.jpg");
+    background-size: cover;
+    margin-top: 6rem;
+    h2 {
+      font-size: 4rem;
+    }
+  }
+
+}
+
+.iwith-vision-wrapper {
+  padding: 0 1rem;
+  margin: 0 auto;
+  @include mq("sp") {
+    line-height: 3.5rem;
+    max-height: 60rem;
+    max-width: 45rem;
+    padding-bottom: 3rem;
+    p {
+      font-size: 2rem;
+    }
+  }
+  @include mq("tab") {
+    line-height: 4rem;
+    height: 40rem;
+    max-width: 80rem;
+    p {
+      font-size: 2.5rem;
+    }
+  }
+  @include mq("pc") {
+    line-height: 4.5rem;
+    height: 45rem;
+    max-width: 100rem;
+    p {
+      font-size: 3rem;
+    }
+  }
+
+}
+
+
 /*  iwith vision 終了　*/
+
+/*  iwith 会社概要　開始　*/
+
+.company-summary-wrapper {
+  padding-bottom: 2rem;
+  @include mq("sp"){
+    h3{
+      padding: 2rem;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+  }
+  @include mq("tab"){
+    h3 {
+      font-size: 3rem;
+    }
+  }
+  @include mq("pc"){
+    h3 {
+      font-size: 4rem;
+    }
+  }
+}
+
+.summary-table{
+  margin: 0 auto;
+  @include mq("sp") {
+
+  width: 95%;
+  max-width: 40rem;
+ tr {
+  border: solid 1px black;
+}
+
+  th {
+    position: relative;
+    padding: 3rem 2.5rem 0 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  th:before {
+    position: absolute;
+    content: '';
+    bottom: -3px;
+    left: 0;
+    border: none;
+    border-left: solid 1rem transparent;
+    border-bottom: solid 1rem rgb(119, 195, 223);
+  }
+  th:after {
+    position: absolute;
+    content: '';
+    bottom: -3px;
+    left: 10px;
+    width: 270%;
+    border-bottom: solid 0.1rem rgb(119, 195, 223);
+  }
+
+  td {
+    padding-top: 3rem;
+    text-align: center;
+  }
+}
+
+  @include mq("tab") {
+    width: 80%;
+    max-width: 50rem;
+    tr {
+      font-size: 2rem;
+    }
+    th:after {
+      width: 300%
+    }
+    td {
+      text-align: right;
+    }
+
+  }
+
+  @include mq("pc") {
+    width: 70%;
+    max-width: 60rem;
+    tr {
+      font-size: 2rem;
+    }
+    th:after {
+      width: 300%
+    }
+    td {
+      text-align: right;
+    }
+  }
+
+
+}
+
+/*  iwith 会社概要終了　*/
+
+
 
 
 /*  iwith 問い合わせ*/
 #formWrap {
-	width: 90%;
+  width: 90%;
   max-width: 80rem;
-	margin: 6rem auto 0 auto;
-	color:#555;
-	line-height:120%;
-	font-size:90%;
+  margin: 6rem auto 0;
+  color: #555;
+  line-height: 120%;
+  font-size: 90%;
   text-align: center;
   height: 50rem;
 
   h3 {
-    padding: 1rem 0 0.5rem 0;
+    padding: 1rem 0 0.5rem;
   }
+
   p {
     padding: 1rem;
   }
 }
 
-table.formTable{
-	width:100%;
-	margin:0 auto;
-	border-collapse:collapse;
+table.formTable {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
   height: 50rem;
 }
-table.formTable td,table.formTable th{
-	border:1px solid #ccc;
-	padding:10px;
+
+table.formTable td,
+table.formTable th {
+  border: 1px solid #ccc;
+  padding: 10px;
   text-align: center;
 }
-table.formTable th{
-	width:30%;
-	font-weight:normal;
-	background:#efefef;
-	text-align:left;
+
+table.formTable th {
+  width: 30%;
+  font-weight: normal;
+  background: #efefef;
+  text-align: left;
 }
-input[type="text"], textarea {
-	width:95%;
-	padding:5px;
-	font-size:110%;
-	display:block;
+
+input[type="text"],
+textarea {
+  width: 95%;
+  padding: 5px;
+  font-size: 110%;
+  display: block;
 }
 
 .btn {
   padding: 2rem;
   font-size: 3rem;
 }
-
 @media screen and (max-width:500px) {
+  #formWrap {
+    width: 95%;
+    margin: 6rem auto 0;
+  }
 
-#formWrap {
-	width:95%;
-	margin:6rem auto 0 auto;
+  table.formTable td,
+  table.formTable th {
+    width: auto;
+    display: block;
+  }
+
+  table.formTable th {
+    margin-top: 5px;
+    border-bottom: 0;
+    text-align: center;
+  }
+
+  select {
+    width: 60%;
+  }
+
+  input[type="text"],
+  textarea {
+    width: 95%;
+    padding: 5px;
+    font-size: 110%;
+    display: block;
+  }
+
+  input[type="submit"],
+  input[type="reset"],
+  input[type="button"] {
+    display: block;
+    width: 100%;
+    height: 40px;
+  }
+
+  .ask_kaigyou::before {
+    content: "\A";
+    white-space: pre;
+  }
 }
-table.formTable th, table.formTable td {
-	width:auto;
-	display:block;
-}
-table.formTable th {
-	margin-top:5px;
-	border-bottom:0;
-  text-align: center;
-}
-
-select {
-  width: 60%;
-}
-
-
-input[type="text"], textarea {
-	width:95%;
-	padding:5px;
-	font-size:110%;
-	display:block;
-}
-input[type="submit"], input[type="reset"], input[type="button"] {
-	display:block;
-	width:100%;
-	height:40px;
-}
-
-.ask_kaigyou::before {
-  content: "\A";
-  white-space: pre;
-
-}
-
-}
-
-
-
 /*  iwith 問い合わせ終了*/
-
-
 /*  iwith 会社概要*/
 /*  iwith 会社概要終了*/
-
-
-
 /* ページ内リンク調整用　*/
 .iwith_performance::before,
-.what_is_iwith::before {
+.what_is_iwith::before,
+.iwith-vision::before,
+.company-summary::before
+ {
   content: "";
   margin-top: -5rem;
   height: 5rem;
