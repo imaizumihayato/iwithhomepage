@@ -8,11 +8,205 @@
   <link href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="stylesheet.min.css">
   <link href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" rel="stylesheet">
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="./js/three.js"></script>
+  <!--<script type="text/javascript" src="./js/stats.js"></script>-->
+  <!--<script type="text/javascript" src="./js/dat.gui.js"></script>-->
+
 </head>
 
 <body>
+
+<!-- トップコンテンツ部分 -->
+  <div id="WebGL_output">
+    <h1 class="webgl-h1">~itと医療で世界をもっと元気で豊かに~</h1>
+  </div>
+
+  <script type="text/javascript">
+
+
+
+  function init() {
+
+    scene = new THREE.Scene();
+
+    camera = new THREE.PerspectiveCamera(80,window.innerWidth/window.innerHeight,0.1,1000);
+
+    camera.position.x = 10;
+    camera.position.y = 10;
+    camera.position.z = 10;
+    camera.lookAt(scene.position);
+
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setClearColor(new THREE.Color(0x000000));
+    renderer.setSize(window.innerWidth,window.innerHeight);
+    renderer.shadowMap.enable = true;
+
+    //const axes = new THREE.AxisHelper(300);
+    //scene.add(axes);
+
+    const sphere = createMesh(new THREE.SphereGeometry(8, 40, 40));
+
+    scene.add(sphere);
+
+    camera.position.x = -10;
+    camera.position.y = 15;
+    camera.position.z = 25;
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+    const ambi = new THREE.AmbientLight(0x181818);
+    scene.add(ambi);
+
+    const spotLight = new THREE.DirectionalLight(0xffffff);
+    spotLight.position.set(550, 100, 550);
+    spotLight.intensity = 0.6;
+
+    scene.add(spotLight);
+
+    document.getElementById("WebGL_output").appendChild(renderer.domElement);
+
+    let step = 0;
+
+    let knot;
+
+    var controls = new function() {
+
+      this.radius = 40;
+      this.tube = 0;
+      this.radialSegments = 0;
+      this.tubularSegments = 20;
+      this.p = 5;
+      this.q = 4;
+      this.asParticles = true;
+      this.rotate = true;
+
+      this.redraw = function () {
+                // remove the old plane
+                if(knot) scene.remove(knot);
+                // create a new one
+                var geom = new THREE.TorusKnotGeometry(controls.radius, controls.tube, Math.round(controls.radialSegments), Math.round(controls.tubularSegments), Math.round(controls.p), Math.round(controls.q));
+
+                if (controls.asParticles) {
+                    knot = createPoints(geom);
+                } else {
+                    knot = createMesh(geom);
+                }
+      scene.add(knot);
+    }
+  }
+
+        controls.redraw();
+
+
+
+    function generateSprite() {
+
+            var canvas = document.createElement('canvas');
+            canvas.width = 16;
+            canvas.height = 16;
+
+            var context = canvas.getContext('2d');
+            var gradient = context.createRadialGradient(canvas.width / 2, canvas.height / 2, 0.1, canvas.width / 2, canvas.height / 2, canvas.width / 2);
+            gradient.addColorStop(0, 'rgba(255,255,255,1)');
+            gradient.addColorStop(0.1, 'rgba(0,255,255,1)');
+            gradient.addColorStop(0.2, 'rgba(0,0,64,1)');
+            gradient.addColorStop(1, 'rgba(0,0,0,1)');
+
+            context.fillStyle = gradient;
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            var texture = new THREE.Texture(canvas);
+            texture.needsUpdate = true;
+            return texture;
+
+        }
+
+        function createPoints(geom) {
+            var material = new THREE.PointsMaterial({
+                color: 0xffffff,
+                size: 3,
+                transparent: true,
+                blending: THREE.AdditiveBlending,
+                map: generateSprite(),
+                depthWrite: false
+            });
+
+            var cloud = new THREE.Points(geom, material);
+            cloud.sortParticles = true;
+            return cloud;
+        }
+
+        function createMesh(geom) {
+
+            // assign two materials
+            const meshMaterial = new THREE.MeshNormalMaterial({});
+            meshMaterial.side = THREE.DoubleSide;
+
+            // create a multimaterial
+            const mesh = THREE.SceneUtils.createMultiMaterialObject(geom, [meshMaterial]);
+
+            return mesh;
+        }
+
+        function createMesh(geomsp) {
+            const textureLoader = new THREE.TextureLoader();
+            const planetTexture = textureLoader.load("image/Earth.png");
+            const specularTexture = textureLoader.load("image/EarthSpec.png");
+            const normalTexture = textureLoader.load("image/EarthNormal.png");
+
+
+            const planetMaterial = new THREE.MeshPhongMaterial();
+            planetMaterial.specularMap = specularTexture;
+            planetMaterial.specular = new THREE.Color(0x4444aa);
+
+
+            planetMaterial.normalMap = normalTexture;
+            planetMaterial.map = planetTexture;
+//               planetMaterial.shininess = 150;
+
+
+            // create a multimaterial
+            const mesh = THREE.SceneUtils.createMultiMaterialObject(geomsp, [planetMaterial]);
+
+            return mesh;
+        }
+
+
+    render();
+
+    function render() {
+
+    sphere.rotation.y += 0.01;
+    if (controls.rotate) {
+                knot.rotation.y = step += 0.01;
+            }
+
+    requestAnimationFrame(render);
+    renderer.render(scene, camera);
+  }
+
+       onResize();
+
+        window.addEventListener('resize', onResize);
+
+        function onResize() {
+          const width = window.innerWidth;
+          const height = window.innerHeight;
+
+          renderer.setPixelRatio(window.devicePixelRatio);
+          renderer.setSize(width, height);
+
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+        }
+}
+      window.onload = init;
+
+  </script>
+
+
 <!-- ヘッダー部分　-->
+
+
   <div class="header">
     <div class="header-container">
       <div class="header-logo clearfix">
@@ -41,6 +235,7 @@
    </div>
    </div>
   </div>
+
   <!-- ヘッダー部分終了 -->
 
   <!-- モーダル部分 -->
@@ -57,13 +252,6 @@
   </div>
   <!-- モーダル部分終了 -->
 
-  <!-- トップコンテンツ部分 -->
-<div class="top-contents">
- <div class="top-contents-wrapper">
-   <h1>~itと医療で世界をもっと元気で豊かに~</h1>
- </div>
-</div>
-<!-- トップコンテンツ部分終了 -->
 
 <!-- iwithとは -->
 <div class="what_is_iwith anchor" id="what_is_iwith">
@@ -193,8 +381,6 @@
     </div>
   </div>
 </div>
-
-
 <!-- iwith footer 終了 -->
 
 
@@ -205,14 +391,10 @@
 <div id="test">aiueo</div>
 </div>-->
 
-<div class="canvas">
- <canvas id="myCanvas"></canvas>
-</div>
-
 <!-- test領域終了 -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
 
-
-<script src="js/script.js"></script>
 
 </body>
 
