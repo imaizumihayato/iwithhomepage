@@ -259,6 +259,7 @@ else if($confirmDsp == 1){
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="stylesheet.min.css">
 <meta name="format-detection" content="telephone=no">
 <title>確認画面</title>
 <style type="text/css">
@@ -641,7 +642,7 @@ function refererCheck($Referer_check,$Referer_check_domain){
 	}
 }
 function copyright(){
-	echo '<a style="display:block;text-align:center;margin:15px 0;font-size:11px;color:#aaa;text-decoration:none" href="http://www.php-factory.net/" target="_blank">- PHP工房 -</a>';
+	echo '<a style="display:block;text-align:center;margin:15px 0;font-size:11px;color:#aaa;text-decoration:none" https://iwith.tech/" target="_blank">- iwith合同会社 -</a>';
 }
 //----------------------------------------------------------------------
 //  関数定義(END)

@@ -135,9 +135,7 @@ body {
   align-items: center;
 }
 /*  モーダル部分終了　*/
-
 /*  トップコンテンツ部分　*/
-
 #WebGL-output {
   position: relative;
   z-index: 100;
@@ -156,22 +154,20 @@ body {
   color: white;
   @include mq("sp") {
     width: 30rem;
-    font-size: 1.69rem;
+    font-size: 1.6rem;
   }
-    @include mq("tab") {
-      top: 47%;
-      width: 80rem;
-      font-size: 4.4rem;
-    }
-    @include mq("pc") {
-      top: 47%;
-      width: 80rem;
-      font-size: 4.4rem;
-    }
+  @include mq("tab") {
+    top: 47%;
+    width: 80rem;
+    font-size: 4.4rem;
   }
-
+  @include mq("pc") {
+    top: 47%;
+    width: 80rem;
+    font-size: 4.4rem;
+  }
+}
 /*  トップコンテンツ部分終了　*/
-
 /*  iwithとは　*/
 .what_is_iwith {
   background-color: darken(#F6F6F4, 7%);
@@ -514,8 +510,16 @@ textarea {
 }
 
 .btn {
-  padding: 2rem;
-  font-size: 3rem;
+  font-size: 1rem;
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  display: block;
+  width: 10rem;
+  height: 2rem;
+  margin-top: 1rem;
 }
 @media screen and (max-width:500px) {
   #formWrap {
@@ -551,8 +555,9 @@ textarea {
   input[type="reset"],
   input[type="button"] {
     display: block;
-    width: 100%;
-    height: 40px;
+    width: 20rem;
+    height: 3rem;
+    margin-top: 1rem;
   }
 
   .ask_kaigyou::before {
@@ -690,12 +695,13 @@ textarea {
   text-align: center;
   @include mq("sp") {
     h3 {
+      padding-top: 0.5rem;
       font-size: 1.5rem;
     }
 
     p {
       display: inline-block;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       padding-top: 1rem;
     }
   }
