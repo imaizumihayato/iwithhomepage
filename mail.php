@@ -87,7 +87,7 @@ $jumpPage = 0;
 $thanksPage = "https://iwith.tech/";
 
 // 必須入力項目を設定する(する=1, しない=0)
-$requireCheck = 1;
+$requireCheck = 0;
 
 /* 必須入力項目(入力フォームで指定したname属性の値を指定してください。（上記で1を設定した場合のみ）
 値はシングルクォーテーションで囲み、複数の場合はカンマで区切ってください。フォーム側と順番を合わせると良いです。
@@ -259,6 +259,7 @@ else if($confirmDsp == 1){
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="stylesheet.min.css">
 <meta name="format-detection" content="telephone=no">
 <title>確認画面</title>
 <style type="text/css">
@@ -641,7 +642,7 @@ function refererCheck($Referer_check,$Referer_check_domain){
 	}
 }
 function copyright(){
-	echo '<a style="display:block;text-align:center;margin:15px 0;font-size:11px;color:#aaa;text-decoration:none" href="http://www.php-factory.net/" target="_blank">- PHP工房 -</a>';
+	echo '<a style="display:block;text-align:center;margin:15px 0;font-size:11px;color:#aaa;text-decoration:none" https://iwith.tech/" target="_blank">- iwith合同会社 -</a>';
 }
 //----------------------------------------------------------------------
 //  関数定義(END)

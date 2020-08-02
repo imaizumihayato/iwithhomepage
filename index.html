@@ -9,10 +9,241 @@
   <link rel="stylesheet" href="stylesheet.min.css">
   <link href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" rel="stylesheet">
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/three.js"></script>
+  <!--<script type="text/javascript" src="./js/stats.js"></script>-->
+  <!--<script type="text/javascript" src="./js/dat.gui.js"></script>-->
+  <script src="//kitchen.juicer.cc/?color=LPHADFETMKs=" async></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 </head>
 
 <body>
+
+<!-- spinner部分 -->
+<div id="main">
+    <my-spinner color="#11AA11" v-boind:size="30"></my-spinner>
+</div>
+
+<script type="text/javascript">
+
+Vue.component('my-spinner',{
+  template: '<div class="my-spinner rotate v-bind:style="style" v-show:loading></div>',
+  props: {
+    loading: {
+      type: Boolean,
+      default: true
+    },
+    color: {
+      type: String,
+      default: '#000000'
+    },
+    size: {
+      type: Number,
+      default: 16
+    }
+  },
+  computed: {
+    style: function(){
+      return {
+        height: this.size + 'px',
+        width: this.size + 'px',
+        borderColor: this.color + ' ' + this.color + ' ' + 'transparent',
+      };
+    }
+  },
+})
+
+  new Vue({
+    el: '#main',
+    data: {
+
+    }
+  })
+
+</script>
+
+
+<!-- spinner部分終了 -->
+
+<!-- トップコンテンツ部分 -->
+  <div id="WebGL_output">
+    <h1 class="webgl-h1">~itと医療で世界をもっと元気で豊かに~</h1>
+  </div>
+
+  <script type="text/javascript">
+
+  function init() {
+
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(80,window.innerWidth/window.innerHeight,0.1,1000);
+
+    camera.position.x = -10;
+    camera.position.y = 15;
+    camera.position.z = 25;
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setClearColor(new THREE.Color(0x000000));
+    renderer.setSize(window.innerWidth,window.innerHeight);
+    renderer.shadowMap.enable = true;
+
+    //const axes = new THREE.AxisHelper(300);
+    //scene.add(axes);
+
+    const sphere = createMesh(new THREE.SphereGeometry(8, 40, 40));
+
+    scene.add(sphere);
+
+    const ambi = new THREE.AmbientLight(0x181818);
+    scene.add(ambi);
+
+    const spotLight = new THREE.DirectionalLight(0xffffff);
+    spotLight.position.set(550, 100, 550);
+    spotLight.intensity = 0.6;
+
+    scene.add(spotLight);
+
+    document.getElementById("WebGL_output").appendChild(renderer.domElement);
+
+    let step = 0;
+
+    let knot;
+
+    const controls = new function() {
+
+      this.radius = 40;
+      this.tube = 0;
+      this.radialSegments = 0;
+      this.tubularSegments = 20;
+      this.p = 5;
+      this.q = 4;
+      this.asParticles = true;
+      this.rotate = true;
+
+      this.redraw = function () {
+
+      if(knot) scene.remove(knot);
+      var geom = new THREE.TorusKnotGeometry(controls.radius, controls.tube, Math.round(controls.radialSegments), Math.round(controls.tubularSegments), Math.round(controls.p), Math.round(controls.q));
+
+      if (controls.asParticles) {
+        knot = createPoints(geom);
+      } else {
+        knot = createMesh(geom);
+      }
+      scene.add(knot);
+    }
+  }
+
+    controls.redraw();
+
+
+
+    function generateSprite() {
+
+            var canvas = document.createElement('canvas');
+            canvas.width = 16;
+            canvas.height = 16;
+
+            var context = canvas.getContext('2d');
+            var gradient = context.createRadialGradient(canvas.width / 2, canvas.height / 2, 0.1, canvas.width / 2, canvas.height / 2, canvas.width / 2);
+            gradient.addColorStop(0, 'rgba(255,255,255,1)');
+            gradient.addColorStop(0.1, 'rgba(0,255,255,1)');
+            gradient.addColorStop(0.2, 'rgba(0,0,64,1)');
+            gradient.addColorStop(1, 'rgba(0,0,0,1)');
+
+            context.fillStyle = gradient;
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            var texture = new THREE.Texture(canvas);
+            texture.needsUpdate = true;
+            return texture;
+
+        }
+
+        function createPoints(geom) {
+            var material = new THREE.PointsMaterial({
+                color: 0xffffff,
+                size: 3,
+                transparent: true,
+                blending: THREE.AdditiveBlending,
+                map: generateSprite(),
+                depthWrite: false
+            });
+
+            var cloud = new THREE.Points(geom, material);
+            cloud.sortParticles = true;
+            return cloud;
+        }
+
+        function createMesh(geom) {
+            const meshMaterial = new THREE.MeshNormalMaterial({});
+            meshMaterial.side = THREE.DoubleSide;
+
+            const mesh = THREE.SceneUtils.createMultiMaterialObject(geom, [meshMaterial]);
+
+            return mesh;
+        }
+
+        function createMesh(geomsp) {
+            const textureLoader = new THREE.TextureLoader();
+            const planetTexture = textureLoader.load("image/Earth.png");
+            const specularTexture = textureLoader.load("image/EarthSpec.png");
+            const normalTexture = textureLoader.load("image/EarthNormal.png");
+
+
+            const planetMaterial = new THREE.MeshPhongMaterial();
+            planetMaterial.specularMap = specularTexture;
+            planetMaterial.specular = new THREE.Color(0x4444aa);
+
+
+            planetMaterial.normalMap = normalTexture;
+            planetMaterial.map = planetTexture;
+
+            const mesh = THREE.SceneUtils.createMultiMaterialObject(geomsp, [planetMaterial]);
+
+            return mesh;
+        }
+
+
+    render();
+
+    function render() {
+
+    sphere.rotation.y += 0.01;
+    if (controls.rotate) {
+                knot.rotation.y = step += 0.01;
+            }
+
+    requestAnimationFrame(render);
+    renderer.render(scene, camera);
+  }
+
+       onResize();
+
+        window.addEventListener('resize', onResize);
+
+        function onResize() {
+          const width = window.innerWidth;
+          const height = window.innerHeight;
+
+          renderer.setPixelRatio(window.devicePixelRatio);
+          renderer.setSize(width, height);
+
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+        }
+}
+      window.onload = init;
+
+  </script>
+
+
 <!-- ヘッダー部分　-->
+
+
   <div class="header">
     <div class="header-container">
       <div class="header-logo clearfix">
@@ -41,6 +272,7 @@
    </div>
    </div>
   </div>
+
   <!-- ヘッダー部分終了 -->
 
   <!-- モーダル部分 -->
@@ -57,13 +289,6 @@
   </div>
   <!-- モーダル部分終了 -->
 
-  <!-- トップコンテンツ部分 -->
-<div class="top-contents">
- <div class="top-contents-wrapper">
-   <h1>~itと医療で世界をもっと元気で豊かに~</h1>
- </div>
-</div>
-<!-- トップコンテンツ部分終了 -->
 
 <!-- iwithとは -->
 <div class="what_is_iwith anchor" id="what_is_iwith">
@@ -77,7 +302,7 @@
 <!-- iwithとは終了 -->
 
 <!-- iwith実績 -->
-<div class="iwith_performance" id="iwith_performance">
+<div class="iwith_performance head-design" id="iwith_performance">
       <h2>iwith実績例</h2>
   <div class="iwith_performance_wrapper">
 
@@ -114,8 +339,8 @@
 <!-- iwith実績終了 -->
 
 <!-- iwith vision -->
-<div class="iwith-vision" id="iwith_vision">
-  <h2>iwithの目指す場所</h2>
+<div class="iwith-vision head-design" id="iwith_vision">
+  <h2 class="head-design">iwithの目指す場所</h2>
     <div class="iwith-vision-wrapper">
     <p>　iwithはit技術を用いてビジネスの問題解決や、ちょっとしたit周りのトラブルなどをきめ細やかに解決していきます。それと並行して、皆様の健康を支える医療サービスの自社開発に取り組んでいきます。</p>
     <span class="p_kaigyou"></span><p>　働き方にも柔軟な制度を導入します。年齢・場所・人種問わずやる気のある人に自己成長をしながら働いてもらいます。リモートワークの推進とその環境の提供や、フレックス制度の導入、雇用形態もその人に合わせて考慮します。</p>
@@ -126,9 +351,9 @@
 <!-- iwith vision終了 -->
 
 <!-- iwith 事業内容開始 -->
-  <div class="company-summary" id="company-summary">
+  <div class="company-summary head-design" id="company-summary">
     <div class="company-summary-wrapper">
-    <h3>会社概要</h3>
+    <h2 class="head-design">会社概要</h2>
     <table class="summary-table">
     <tr class="summary-tr">
       <th>会社名</th>
@@ -153,27 +378,47 @@
   </table>
 </div>
 </div>
-
 <!-- iwith 事業内容終了 -->
 
-
-
-
-<!-- test領域 -->
-
-
-<!--<div class="testtest"
-<div id="test">aiueo</div>
-</div>-->
-
-<div class="canvas">
- <canvas id="myCanvas"></canvas>
+<!-- 代表経歴開始 -->
+<div class="ceo-intro">
+  <div class="ceo-intro-wrapper">
+    <div class="ceo-picture">
+      <img src="image/selfPicture.jpg" alt="代表写真">
+    </div>
+    <div class="ceo-picture-comment">
+      <h3>代表紹介</h3>
+      <p>薬剤師・エンジニア。大手ドラックストア・調剤薬局で薬剤師として勤務。並行してitシステムの受託業務を行う。2017年iwith合同会社設立。趣味はブレイクダンス。
+      </p>
+    </div>
+  </div>
 </div>
 
-<!-- test領域終了 -->
+<!-- 代表経歴終了 -->
 
-
-<script src="js/script.js"></script>
+<!-- iwith footer 開始 -->
+<div class="footer">
+  <div class="footer-wrapper">
+    <div class="footer-menu1 footers">
+     <ul>
+       <li><a href="./index.html">top</a></li>
+       <li><a href="#what_is_iwith">事業内容</a></li>
+       <li><a href="#iwith_performance">実績</a></li>
+    </ul>
+    </div>
+    <div class="footer-menu2 footers">
+     <ul>
+      <li><a href="#iwith_vision">ビジョン</a></li>
+      <li><a href="./ask.html">お問い合わせ</a></li>
+      <li><a href="#company-summary">会社概要</a></li>
+     </ul>
+    </div>
+    <div class="right footers">
+      <p>iwith LLC. All rights reserved @2020</p>
+    </div>
+  </div>
+</div>
+<!-- iwith footer 終了 -->
 
 </body>
 
