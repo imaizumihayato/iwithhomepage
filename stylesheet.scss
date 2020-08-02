@@ -6,7 +6,7 @@ html {
   font-size: 62.5%;
 }
 
-body {
+body{
   font-size: 1.6rem;
 }
 
@@ -135,6 +135,42 @@ body {
   align-items: center;
 }
 /*  モーダル部分終了　*/
+
+/*  spinner start　*/
+.my-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px;
+  border-style: solid;
+  border-color: black black transparent;
+  border-radius: 100%;
+}
+
+.my-spinner.rotate {
+  animation: rotate-anim 1s 0s infinite linear;
+  animation-fill-mode: both;
+}
+
+@keyframes rotate-anim
+{
+  0%
+  {
+    transform: rotate(0deg) scale(1);
+  }
+  50%
+  {
+    transform: rotate(180deg) scale(0.8);
+  }
+  100%
+  {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/*  spinner end　*/
+
+
 /*  トップコンテンツ部分　*/
 #WebGL-output {
   position: relative;
@@ -461,6 +497,11 @@ body {
 }
 /*  iwith vision 終了　*/
 /*  iwith 問い合わせ*/
+
+.ask-form {
+  height: auto;
+}
+
 #formWrap {
   width: 90%;
   max-width: 80rem;
@@ -759,6 +800,10 @@ input[type="button"] {
 
 .footers {
   margin-right: 1rem;
+}
+
+#footer{
+
 }
 /*  iwith footer　*/
 /* ページ内リンク調整用　*/

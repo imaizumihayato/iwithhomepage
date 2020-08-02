@@ -14,10 +14,57 @@
   <!--<script type="text/javascript" src="./js/stats.js"></script>-->
   <!--<script type="text/javascript" src="./js/dat.gui.js"></script>-->
   <script src="//kitchen.juicer.cc/?color=LPHADFETMKs=" async></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 </head>
 
 <body>
+
+<!-- spinner部分 -->
+<div id="main">
+    <my-spinner color="#11AA11" v-boind:size="30"></my-spinner>
+</div>
+
+<script type="text/javascript">
+
+Vue.component('my-spinner',{
+  template: '<div class="my-spinner rotate v-bind:style="style" v-show:loading></div>',
+  props: {
+    loading: {
+      type: Boolean,
+      default: true
+    },
+    color: {
+      type: String,
+      default: '#000000'
+    },
+    size: {
+      type: Number,
+      default: 16
+    }
+  },
+  computed: {
+    style: function(){
+      return {
+        height: this.size + 'px',
+        width: this.size + 'px',
+        borderColor: this.color + ' ' + this.color + ' ' + 'transparent',
+      };
+    }
+  },
+})
+
+  new Vue({
+    el: '#main',
+    data: {
+
+    }
+  })
+
+</script>
+
+
+<!-- spinner部分終了 -->
 
 <!-- トップコンテンツ部分 -->
   <div id="WebGL_output">
